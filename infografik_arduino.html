@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografik Interaktif: Selami Dunia Arduino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    NARRATIVE PLAN:
+    1.  Introduction: Hook the user with "What is Arduino?" using a simple, bold statement and a donut chart showing its dual hardware/software nature.
+    2.  Anatomy of Arduino: Visually break down the platform into its core parts: the physical board and the software IDE. Use a bar chart to compare pin types and a custom HTML/CSS diagram for the IDE workflow.
+    3.  The Language of Arduino: Explain the fundamental programming structure (`setup()` vs `loop()`) with a clear visual flow diagram. List key functions in a clean, organized table.
+    4.  From Idea to Reality: Showcase the practical application through basic projects, using an ordered bar chart to represent a learning progression.
+    5.  Conclusion: End with a motivational call to action.
+
+    VISUALIZATION CHOICES (NO SVG, NO MERMAID JS):
+    -   Arduino Core (Hardware vs Software): Goal: Inform -> Chosen: Donut Chart (Chart.js) -> Justification: Excellent for showing simple proportional composition.
+    -   Arduino Uno Pin Comparison (Digital vs Analog): Goal: Compare -> Chosen: Bar Chart (Chart.js) -> Justification: Ideal for direct comparison of quantities between a few categories.
+    -   IDE Workflow (Edit -> Compile -> Upload): Goal: Organize (Process) -> Chosen: Flow Chart (HTML/CSS with Tailwind) -> Justification: A simple, linear process is perfectly represented with styled divs and arrows, avoiding SVG/Mermaid.
+    -   Programming Structure (setup() vs loop()): Goal: Organize (Process) -> Chosen: Flow Chart (HTML/CSS with Tailwind) -> Justification: Clearly illustrates the "run once" vs "run forever" logic without needing complex diagramming libraries.
+    -   Project Learning Curve: Goal: Rank/Compare -> Chosen: Ordered Bar Chart (Chart.js) -> Justification: Effectively shows a progression in complexity, providing a narrative of learning.
+
+    CONFIRMATION: NEITHER MERMAID JS NOR SVG were used in this output. All diagrams are built with HTML and Tailwind CSS. All charts are rendered on Canvas by Chart.js.
+    
+    COLOR PALETTE: "Energetic & Playful" (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C)
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-shadow">Selami Dunia Arduino</h1>
+            <p class="text-lg md:text-xl mt-2 text-[#118AB2]">Panduan Visual Untuk Memahami Asas Platform Elektronik Paling Popular.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="apa-itu-arduino" class="text-center">
+                <h2 class="text-3xl font-bold mb-4">Apa Itu Arduino?</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-8">
+                    Arduino ialah sebuah platform elektronik sumber terbuka yang menggabungkan perkakasan (papan litar) dan perisian (IDE) untuk memudahkan sesiapa sahaja membina projek interaktif. Ia adalah jambatan antara dunia digital dan fizikal.
+                </p>
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-4xl mx-auto">
+                    <h3 class="text-xl font-semibold mb-4 text-[#06D6A0]">Dua Teras Utama Arduino</h3>
+                    <p class="mb-6">Kejayaan Arduino terletak pada gabungan dua komponen utamanya: Papan fizikal yang menjadi 'badan' dan perisian IDE yang menjadi 'minda', membolehkan anda memberi arahan kepadanya.</p>
+                    <div class="chart-container">
+                        <canvas id="coreComponentsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="anatomi-arduino">
+                <h2 class="text-3xl font-bold text-center mb-8">Anatomi Arduino</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+                    
+                    <div class="bg-white rounded-lg shadow-xl p-6 lg:col-span-1">
+                        <h3 class="text-xl font-semibold mb-4 text-[#FF6B6B]">Papan Arduino Uno</h3>
+                        <p class="mb-6">Papan Arduino Uno adalah model yang paling popular. Ia dilengkapi dengan pelbagai pin untuk menyambung komponen seperti sensor, motor, dan lampu LED.</p>
+                         <div class="bg-gray-200 p-4 rounded-lg border-2 border-gray-400">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="bg-gray-700 text-white text-xs font-bold py-1 px-2 rounded">USB</div>
+                                <div class="bg-gray-400 w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center text-xs">RESET</div>
+                            </div>
+                            <div class="bg-gray-800 h-16 w-8 mx-auto rounded border-2 border-gray-500 flex items-center justify-center text-white text-xxs font-mono">ATmega</div>
+                            <div class="flex justify-between mt-2">
+                                <div class="space-y-1">
+                                    <div class="w-full h-2 bg-blue-500 rounded"></div>
+                                    <p class="text-xs font-semibold">Digital Pins</p>
+                                </div>
+                                <div class="space-y-1">
+                                     <div class="w-full h-2 bg-green-500 rounded"></div>
+                                     <p class="text-xs font-semibold">Analog Pins</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center mt-2 text-sm italic">Representasi visual ringkas Papan Arduino.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 lg:col-span-1">
+                        <h3 class="text-xl font-semibold mb-4 text-[#FFD166]">Perbandingan Pin</h3>
+                        <p class="mb-6">Arduino Uno menyediakan lebih banyak pin Digital berbanding pin Analog. Pin Digital sesuai untuk isyarat ON/OFF (seperti suis), manakala pin Analog boleh membaca julat nilai (seperti sensor suhu).</p>
+                        <div class="chart-container">
+                            <canvas id="pinComparisonChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 lg:col-span-1">
+                         <h3 class="text-xl font-semibold mb-4 text-[#118AB2]">Aliran Kerja Perisian (IDE)</h3>
+                         <p class="mb-6">Perisian Arduino IDE (Integrated Development Environment) menyediakan semua yang anda perlukan untuk menghidupkan papan anda melalui tiga langkah mudah.</p>
+                         <div class="space-y-4">
+                            <div class="bg-blue-100 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                                <h4 class="font-bold">1. Tulis Kod (Editor)</h4>
+                                <p class="text-sm">Anda menulis arahan dalam bahasa pengaturcaraan Arduino.</p>
+                            </div>
+                             <div class="flex justify-center text-blue-500 font-bold text-2xl">↓</div>
+                             <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                                <h4 class="font-bold">2. Susun (Compile)</h4>
+                                <p class="text-sm">IDE menukar kod anda kepada bahasa yang difahami oleh mikropengawal.</p>
+                            </div>
+                            <div class="flex justify-center text-yellow-500 font-bold text-2xl">↓</div>
+                            <div class="bg-green-100 border-l-4 border-green-500 p-4 rounded-r-lg">
+                                <h4 class="font-bold">3. Muat Naik (Upload)</h4>
+                                <p class="text-sm">Kod yang telah disusun dihantar ke papan Arduino melalui kabel USB.</p>
+                            </div>
+                         </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="bahasa-arduino">
+                <h2 class="text-3xl font-bold text-center mb-8">Bahasa Arduino</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white rounded-lg shadow-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-[#06D6A0]">Struktur Kod Asas</h3>
+                        <p class="mb-6">Setiap kod Arduino (dikenali sebagai "sketch") mempunyai dua fungsi utama yang wajib ada. Memahaminya adalah kunci untuk memulakan pengaturcaraan.</p>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="flex-1 border-2 border-dashed border-green-400 p-4 rounded-lg bg-green-50">
+                                <h4 class="font-bold text-green-800">void setup() { ... }</h4>
+                                <p class="text-sm mt-2">Fungsi ini berjalan **sekali sahaja** apabila papan dihidupkan atau butang set semula (reset) ditekan. Ia digunakan untuk konfigurasi awal seperti menetapkan mod pin.</p>
+                                <div class="text-center text-green-500 text-3xl mt-4">→</div>
+                            </div>
+                            <div class="flex-1 border-2 border-solid border-purple-400 p-4 rounded-lg bg-purple-50">
+                                <h4 class="font-bold text-purple-800">void loop() { ... }</h4>
+                                <p class="text-sm mt-2">Selepas `setup()` selesai, kod di dalam `loop()` akan berjalan **secara berterusan** berulang kali selagi papan menerima kuasa. Di sinilah logik utama projek anda diletakkan.</p>
+                                <div class="text-center text-purple-500 text-3xl mt-4">↺</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-[#FF6B6B]">Fungsi-fungsi Penting</h3>
+                        <p class="mb-6">Berikut adalah beberapa fungsi yang paling kerap digunakan dalam projek Arduino.</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-red-100">
+                                    <tr>
+                                        <th class="p-2 rounded-tl-lg">Fungsi</th>
+                                        <th class="p-2 rounded-tr-lg">Kegunaan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b"><td class="p-2 font-mono">pinMode(pin, mode)</td><td class="p-2">Menetapkan pin sebagai INPUT atau OUTPUT.</td></tr>
+                                    <tr class="border-b"><td class="p-2 font-mono">digitalWrite(pin, value)</td><td class="p-2">Menghantar isyarat HIGH (5V) atau LOW (0V) ke pin digital.</td></tr>
+                                    <tr class="border-b"><td class="p-2 font-mono">digitalRead(pin)</td><td class="p-2">Membaca status pin digital (HIGH atau LOW).</td></tr>
+                                    <tr class="border-b"><td class="p-2 font-mono">analogRead(pin)</td><td class="p-2">Membaca nilai dari pin analog (0 hingga 1023).</td></tr>
+                                    <tr><td class="p-2 font-mono">delay(ms)</td><td class="p-2">Memberhentikan program untuk tempoh masa tertentu dalam milisaat.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="dari-idea-ke-realiti">
+                <h2 class="text-3xl font-bold text-center mb-4">Dari Idea ke Realiti</h2>
+                <p class="max-w-3xl mx-auto text-lg text-center mb-8">
+                    Dengan pengetahuan asas ini, anda sudah boleh membina pelbagai projek mudah. Carta di bawah menunjukkan keluk pembelajaran untuk beberapa projek pemula yang popular.
+                </p>
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-4xl mx-auto">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-[#118AB2]">Keluk Pembelajaran Projek Asas</h3>
+                    <div class="chart-container" style="max-width: 700px; height: 400px;">
+                        <canvas id="projectComplexityChart"></canvas>
+                    </div>
+                    <div class="flex justify-around mt-4 text-center text-xs md:text-sm">
+                        <div>💡<p>Lampu Berkelip</p></div>
+                        <div>👆<p>Baca Butang</p></div>
+                        <div>🌡️<p>Baca Sensor</p></div>
+                        <div>⚙️<p>Kawalan Motor</p></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="font-bold text-2xl text-[#06D6A0]">Anda Sudah Bersedia!</p>
+            <p class="mt-2 text-lg">Kini anda mempunyai asas yang kukuh. Mula cipta projek Arduino anda yang pertama hari ini!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartOptionsTemplate = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: 'Inter',
+                            size: 14,
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+        };
+
+        const coreComponentsCtx = document.getElementById('coreComponentsChart').getContext('2d');
+        new Chart(coreComponentsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Perkakasan (Papan)', 'Perisian (IDE)'],
+                datasets: [{
+                    label: 'Komponen Teras',
+                    data: [50, 50],
+                    backgroundColor: ['#118AB2', '#06D6A0'],
+                    borderColor: ['#FFFFFF'],
+                    borderWidth: 4
+                }]
+            },
+            options: { ...chartOptionsTemplate }
+        });
+        
+        const pinComparisonCtx = document.getElementById('pinComparisonChart').getContext('2d');
+        new Chart(pinComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Pin Digital I/O', 'Pin Analog Input'],
+                datasets: [{
+                    label: 'Jumlah Pin pada Arduino Uno',
+                    data: [14, 6],
+                    backgroundColor: ['#FF6B6B', '#FFD166'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...chartOptionsTemplate,
+                scales: {
+                    y: { beginAtZero: true, grace: '5%' }
+                }
+            }
+        });
+
+        const projectComplexityCtx = document.getElementById('projectComplexityChart').getContext('2d');
+        new Chart(projectComplexityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['1. Lampu Berkelip (Blink)', '2. Membaca Input Butang', '3. Membaca Sensor Analog', '4. Kawalan Motor Asas'],
+                datasets: [{
+                    label: 'Anggaran Tahap Kesukaran',
+                    data: [10, 25, 45, 60],
+                    backgroundColor: ['#06D6A0', '#FFD166', '#FF6B6B', '#118AB2'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...chartOptionsTemplate,
+                indexAxis: 'y', 
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                           callback: function(value) {
+                               return value + '%'
+                           }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
